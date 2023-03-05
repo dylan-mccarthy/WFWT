@@ -1,0 +1,39 @@
+@page "/location"
+@attribute [Authorize]
+@using WFWT_Frontend.Data
+@inject LocationService LocationService
+
+<PageTitle>Locations</PageTitle>
+
+
+<h1>Locations</h1>
+@if (locations == null)
+{
+    <p>Loading...</p>
+}
+else if (locations.Length == 0)
+{
+    <p>There are no locations.</p>
+}
+else
+{
+    <p>Here are all the locations we have in our database.</p>
+    <ul>
+        @foreach (var l in locations)
+        {
+            <li>
+               @l.name
+            </li>
+        }
+    </ul>
+}
+
+
+@code {
+    private WFWT_Frontend.Data.Location[]? locations;
+
+    protected override async Task OnInitializedAsync()
+    {
+        locations = await LocationService.GetLocationsAsync();
+    }
+}

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>WFWT_Frontend</RootNamespace>
+    <UserSecretsId>8c5752ee-afbe-4528-bce6-3efa9e6c45dc</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Auth0.AspNetCore.Authentication" Version="1.1.0" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="1.2.1" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.2.1" />
+    <PackageReference Include="Blazorise.Sidebar" Version="1.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.3" />
+  </ItemGroup>
+
+</Project>

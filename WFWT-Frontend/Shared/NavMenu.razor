@@ -1,0 +1,39 @@
+﻿<Bar Mode="BarMode.VerticalInline"
+     CollapseMode="BarCollapseMode.Small"
+     Breakpoint="Breakpoint.Desktop"
+     NavigationBreakpoint="Breakpoint.Tablet"
+     ThemeContrast="ThemeContrast.Dark">
+    <BarBrand>
+        <BarItem>
+            <BarLink To="/">
+                <BarIcon IconName="IconName.Dashboard" />
+                Working From Where Tracker
+            </BarLink>
+        </BarItem>
+    </BarBrand>
+    <BarMenu>
+        <BarStart>
+            <BarItem>
+                <BarLink To="/">
+                    <BarIcon IconName="IconName.Dashboard" />
+                    Home
+                </BarLink>
+            </BarItem>
+            <BarItem>
+                <BarLink To="location">
+                    <BarIcon IconName="IconName.Map" />
+                    Location
+                </BarLink>
+            </BarItem>
+            <BarItem>
+                <BarLink To="tracking">
+                    <BarIcon IconName="IconName.Clock" />
+                    Tracking
+                </BarLink>
+            </BarItem>
+        </BarStart>
+    </BarMenu>
+</Bar>
+
+@code {
+}

@@ -1,0 +1,59 @@
+@page "/tracking"
+@attribute [Authorize]
+@using WFWT_Frontend.Data
+@inject TrackingRecordService TrackingRecordService
+@inject LocationService LocationService
+
+<PageTitle>Tracking</PageTitle>
+
+<h1>Work Location Tracking</h1>
+@if(Locations == null || Locations.Count == 0){
+    <p>No locations found. Please add a location first.</p>
+}
+else
+{
+<table>
+    <tr>
+@foreach(var day in ThisWeek){
+    <th>@day.Key @day.Value.Day / @day.Value.Month</th>
+}
+    </tr>
+    <tr>
+@foreach(var day in ThisWeek){
+    @if(day.Value.DayOfWeek == DayOfWeek.Saturday || day.Value.DayOfWeek == DayOfWeek.Sunday){
+        <td></td>
+    }
+    else{
+        <td><Select TValue="string">
+            <option value="">Select Location</option>
+            @foreach(var location in Locations){
+                <option value="@location.id">@location.name</option>
+            }
+        </Select></td>
+    }
+}
+    </tr>
+</table>
+}
+@code {
+    public List<KeyValuePair<string, DateTime>> ThisWeek { get; set; }
+    public List<Data.Location> Locations { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        ThisWeek = GetDatesForThisWeek();
+        Locations = new List<Data.Location>(await LocationService.GetLocationsAsync());
+    }
+
+    private List<KeyValuePair<string, DateTime>> GetDatesForThisWeek(){
+        var dates = new List<KeyValuePair<string, DateTime>>();
+        var today = DateTime.Today;
+        var dayOfWeek = (int)today.DayOfWeek;
+        var startOfWeek = today.AddDays(-dayOfWeek);
+        var endOfWeek = startOfWeek.AddDays(6);
+        for (var date = startOfWeek; date <= endOfWeek; date = date.AddDays(1))
+        {
+            dates.Add(new KeyValuePair<string, DateTime>(date.ToString("ddd"), date));
+        }
+        return dates;
+    }
+}
